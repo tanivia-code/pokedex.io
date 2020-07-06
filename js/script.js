@@ -1,17 +1,13 @@
-// API endpoint --------------------------------------------
+
 const baseUrl = 'https://pokeapi.co/api/v2/pokemon/';
 
-// Get Elements --------------------------------------------
 const searchInput = getElement('.search-input'),
       searchButton = getElement('.search-button'),
       container = getElement('.pokemon'),
-      erroMessage = getElement('.error');
 
-var pokeName, // Nome ou numero passado na caixa de busca
-    pokemon, // Responsavel por guardar os dados recebidos da API
-    card; // Responsavel por receber o HTML 
-
-// Build Functions --------------------------------------------
+var pokeName,
+    pokemon,
+    card;
 
 // Função para reduzir a escrita na captura de elementos HTML
 function getElement(element) {
@@ -32,7 +28,9 @@ function requestPokeInfo(url, name) {
 function createCard () {
   card = `
     <div class="pokemon-picture">
-      <img src="${pokemon.sprites.front_default}" alt="Sprite of ${pokemon.name}">
+      <img src="https://pokeres.bastionbot.org/images/pokemon/${
+							pokemon.id
+						}.png" alt="${name}" />
     </div>
     <div class="pokemon-info">
         <h1 class="name">Name: ${pokemon.name}</h1>
@@ -41,6 +39,8 @@ function createCard () {
         <h3 class="skill">Skills: ${pokemon.moves.map(item => ' ' + item.move.name).toString()}</h3>
         <h3 class="weight">Weight: ${pokemon.weight  / 10}kg</h3>
         <h3 class="height">Height: ${pokemon.height  / 10}m</h3>
+        <small class="price">Preço <span>R$ ${parseInt(pokemon.weight * pokemon.weight / 100)},00</span></small>
+	  <div><button>Comprar</button></div>
     </div>`;
   return card;
 }
