@@ -55,6 +55,7 @@ function createPokemonCard(pokemon) {
             <h3 class="name">${name}</h3>
             <small class="type">Tipo: <span>${type}</span></small>
             <small class="price">Preço <span>R$ ${parseInt(pokemon.weight * pokemon.weight / 100)},00</span></small>
+	    <div><button>Comprar</button></div>
         </div>
     `;
 
